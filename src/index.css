@@ -1,0 +1,492 @@
+/* =========================================
+   CHEF CLAUDE — PREMIUM KITCHEN UI
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    font-family: 'DM Sans', sans-serif;
+    color: #20291f;
+    background: #f7f6f0;
+
+    --green: #173f2a;
+    --green-light: #245b3b;
+    --orange: #e98250;
+    --cream: #f7f6f0;
+    --muted: #777f74;
+    --border: rgba(32, 41, 31, 0.10);
+    --shadow: 0 20px 60px rgba(35, 51, 35, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(233, 130, 80, 0.09), transparent 35%),
+        radial-gradient(ellipse at 100% 15%, rgba(36, 91, 59, 0.09), transparent 35%),
+        var(--cream);
+    color: #20291f;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(32, 41, 31, 0.07);
+    box-shadow: 0 4px 30px rgba(32, 41, 31, 0.035);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header > img {
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+header > img:hover {
+    transform: rotate(-10deg) scale(1.08);
+}
+
+header > h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--green);
+    margin: 0;
+}
+
+/* =========================================
+   MAIN LAYOUT
+   ========================================= */
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 65px 32px 90px;
+}
+
+/* =========================================
+   ADD INGREDIENT FORM
+   ========================================= */
+
+.add-ingredient-form {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.add-ingredient-form > input {
+    flex: 1;
+    min-width: 0;
+    height: 58px;
+    padding: 0 20px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--green);
+
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #dedfd5;
+    border-radius: 13px;
+    outline: none;
+
+    box-shadow: 0 3px 12px rgba(32, 41, 31, 0.025);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.add-ingredient-form > input::placeholder {
+    color: #a2a69c;
+}
+
+.add-ingredient-form > input:focus {
+    background: #fff;
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 4px rgba(36, 91, 59, 0.10);
+}
+
+.add-ingredient-form > button {
+    position: relative;
+    overflow: hidden;
+
+    width: auto;
+    min-width: 175px;
+    padding: 0 24px;
+    height: 58px;
+
+    border: 1px solid var(--green);
+    border-radius: 13px;
+
+    background: var(--green);
+    color: white;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(23, 63, 42, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-ingredient-form > button::before {
+    content: "+";
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 1.25rem;
+    vertical-align: -1px;
+}
+
+.add-ingredient-form > button:hover {
+    background: var(--green-light);
+    box-shadow: 0 10px 24px rgba(23, 63, 42, 0.20);
+    transform: translateY(-2px);
+}
+
+.add-ingredient-form > button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* =========================================
+   INGREDIENTS SECTION
+   ========================================= */
+
+main section {
+    animation: riseIn 0.55s ease both;
+}
+
+main section > h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.15rem);
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    color: var(--green);
+    margin: 0 0 24px;
+}
+
+ul.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 44px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+ul.ingredients-list > li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 17px;
+    min-height: 54px;
+
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    color: #485448;
+    font-size: 0.97rem;
+    line-height: 1.5;
+
+    box-shadow: 0 3px 12px rgba(32, 41, 31, 0.025);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+ul.ingredients-list > li::before {
+    content: "✦";
+    color: var(--orange);
+    font-size: 0.9rem;
+}
+
+ul.ingredients-list > li:hover {
+    transform: translateY(-2px);
+    border-color: rgba(36, 91, 59, 0.24);
+    box-shadow: 0 8px 22px rgba(32, 41, 31, 0.06);
+}
+
+/* =========================================
+   GET RECIPE CARD
+   ========================================= */
+
+.get-recipe-container {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+
+    padding: 32px 34px;
+    margin: 35px 0;
+
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(233, 130, 80, 0.15), transparent 45%),
+        linear-gradient(135deg, #fffefa, #f0f0e7);
+
+    border: 1px solid rgba(32, 41, 31, 0.08);
+    border-radius: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.get-recipe-container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20px;
+    bottom: 20px;
+    width: 4px;
+    border-radius: 0 5px 5px 0;
+    background: var(--orange);
+}
+
+.get-recipe-container h3 {
+    margin: 0 0 9px;
+    color: var(--green);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    line-height: 1.4;
+}
+
+.get-recipe-container p {
+    margin: 0;
+    max-width: 380px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.get-recipe-container button {
+    flex-shrink: 0;
+    position: relative;
+
+    border: none;
+    border-radius: 12px;
+    padding: 15px 24px;
+
+    background: var(--orange);
+    color: white;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(233, 130, 80, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.get-recipe-container button:hover {
+    background: #d96e3c;
+    box-shadow: 0 10px 25px rgba(233, 130, 80, 0.32);
+    transform: translateY(-3px);
+}
+
+.get-recipe-container button:active {
+    transform: scale(0.97);
+}
+
+/* =========================================
+   SUGGESTED RECIPE
+   ========================================= */
+
+.suggested-recipe-container {
+    position: relative;
+    padding: 35px;
+    margin-top: 35px;
+
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    color: #485448;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.85;
+
+    box-shadow: var(--shadow);
+    animation: riseIn 0.6s ease both;
+}
+
+.suggested-recipe-container h1,
+.suggested-recipe-container h2,
+.suggested-recipe-container h3 {
+    color: var(--green);
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.suggested-recipe-container h2 {
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+}
+
+.suggested-recipe-container h3 {
+    font-size: 1.25rem;
+}
+
+.suggested-recipe-container p {
+    margin: 12px 0 22px;
+}
+
+.suggested-recipe-container ul,
+.suggested-recipe-container ol {
+    padding-left: 25px;
+}
+
+.suggested-recipe-container ul li,
+.suggested-recipe-container ol li {
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.suggested-recipe-container li::marker {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+/* =========================================
+   INTERACTION & ANIMATION
+   ========================================= */
+
+button:focus-visible {
+    outline: 3px solid rgba(233, 130, 80, 0.65);
+    outline-offset: 4px;
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 600px) {
+    header {
+        height: 72px;
+    }
+
+    header > img {
+        width: 36px;
+        height: 36px;
+    }
+
+    header > h1 {
+        font-size: 1.55rem;
+    }
+
+    main {
+        padding: 35px 18px 55px;
+    }
+
+    .add-ingredient-form {
+        gap: 9px;
+        margin-bottom: 35px;
+    }
+
+    .add-ingredient-form > input {
+        height: 52px;
+        padding: 0 12px;
+        font-size: 0.9rem;
+    }
+
+    .add-ingredient-form > button {
+        min-width: 0;
+        height: 52px;
+        padding: 0 13px;
+        font-size: 0.82rem;
+    }
+
+    .add-ingredient-form > button::before {
+        margin-right: 5px;
+    }
+
+    ul.ingredients-list {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        margin-bottom: 30px;
+    }
+
+    .get-recipe-container {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        padding: 26px 23px;
+    }
+
+    .get-recipe-container h3 {
+        font-size: 1.35rem;
+    }
+
+    .get-recipe-container button {
+        width: 100%;
+    }
+
+    .suggested-recipe-container {
+        padding: 24px 20px;
+    }
+
+    .suggested-recipe-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
